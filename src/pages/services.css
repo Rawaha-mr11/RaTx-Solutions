@@ -1,0 +1,112 @@
+.services-cta {
+  background: var(--card-color);
+  color: var(--text-offwhite);
+  padding: var(--spacing-xxl);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.services-cta__content h2 {
+  color: var(--text-offwhite);
+  margin-bottom: var(--spacing-md);
+}
+
+.services-cta__content p {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.services-cta__actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-box);
+}
+
+.process-step__number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.process-step__content {
+  flex: 1;
+}
+
+.process-step__title {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-offwhite);
+}
+
+.process-step__description {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 968px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-cta {
+    padding: var(--spacing-xl);
+  }
+
+  .services-cta__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .services-cta__actions .cta-button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .process-step {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .process-step:hover {
+    transform: none;
+  }
+}

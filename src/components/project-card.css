@@ -1,0 +1,137 @@
+.project-card {
+  background: var(--grey-green-glass);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-box);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.project-card__image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/14;
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--image-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  opacity: 0;
+  transform: translateY(300px);
+  transition: all 0.7s ease;
+}
+
+.project-card__overlay-content {
+  text-align: center;
+  color: var(--text-offwhite);
+  max-width: 300px;
+}
+
+.project-card__title {
+  color: var(--text-offwhite);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+}
+
+.project-card__description {
+  color: var(--text-offwhite);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.project-card__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-card__tech {
+  background: var(--image-glass);
+  color: var(--text-offwhite);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project-card__info {
+  padding: var(--spacing-lg);
+}
+
+.project-card__category {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.project-card__name {
+  font-size: 1.125rem;
+  color: var(--text-offwhite);
+  margin: 0;
+}
+
+/* Grid layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .project-card__overlay {
+    padding: var(--spacing-md);
+  }
+
+  .project-card__info {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover {
+    transform: none;
+  }
+  
+  .project-card__image {
+    transition: none;
+  }
+  
+  .project-card__overlay {
+    opacity: 1;
+    transform: none;
+    background: var(--accent-hover);
+  }
+}

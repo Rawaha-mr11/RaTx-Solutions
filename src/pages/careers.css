@@ -1,0 +1,209 @@
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.benefit-item {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--card-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit-item__icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.benefit-item__title {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.benefit-item__description {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.positions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.position-card {
+  background: var(--grey-green-glass);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--accent);
+}
+
+.position-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.position-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.position-card__title {
+  font-size: 1.5rem;
+  color: var(--text-offwhite);
+  margin: 0;
+}
+
+.position-card__meta {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.position-card__department,
+.position-card__type,
+.position-card__location {
+  background: var(--text-offwhite);
+  color: var(--bg-earth-grey-green);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.position-card__description {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.position-card__requirements h4 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-offwhite);
+}
+
+.position-card__requirements ul {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-lg);
+}
+
+.position-card__requirements li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.position-card__actions {
+  text-align: right;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.culture-value {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--card-glass);
+  border-radius: var(--radius-sm);
+}
+
+.culture-value__title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.culture-value__description {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.careers-cta {
+  background: var(--bg-gradient);
+  color: var(--text-offwhite);
+  padding: var(--spacing-xxl);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.careers-cta__content h2 {
+  color: white;
+  margin-bottom: var(--spacing-md);
+}
+
+.careers-cta__content p {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .position-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .position-card__meta {
+    justify-content: flex-start;
+  }
+
+  .position-card {
+    padding: var(--spacing-lg);
+  }
+
+  .culture-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .careers-cta {
+    padding: var(--spacing-xl);
+  }
+
+  .benefit-item {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .benefit-item:hover,
+  .position-card:hover {
+    transform: none;
+  }
+}

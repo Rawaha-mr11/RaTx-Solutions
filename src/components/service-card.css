@@ -1,0 +1,118 @@
+.service-card {
+  background: var(--image-glass);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-box);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  border-color: var(--accent);
+}
+
+.service-card__icon {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  color: var(--text-offwhite); 
+}
+
+
+.service-card__title {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.service-card__description {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.service-card__features {
+  list-style: none;
+  margin-bottom: var(--spacing-xl);
+}
+
+.service-card__feature {
+  padding: var(--spacing-xs) 0;
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+.service-card__feature::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.service-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.service-card__link {
+  color: var(--text-offwhite);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.875rem;
+  border-radius: 2rem;
+  border: 1.5px solid var(--text-offwhite);
+  transition: all 0.6s ease;
+}
+
+.service-card__link:hover {
+  color: var(--card-color);
+  background: var(--accent-hover);
+  transform: translateY(-0.6rem);
+}
+
+/* Grid layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;                
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);                 
+    padding: var(--spacing-md) 0;
+  }
+
+  .service-card {
+    padding: var(--spacing-lg);
+  }
+
+  .service-card__actions {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: stretch;
+  }
+}

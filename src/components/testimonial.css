@@ -1,0 +1,116 @@
+.testimonial {
+  background: var(--image-glass);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.testimonial__content {
+  flex-grow: 1;
+  margin-bottom: var(--spacing-lg);
+}
+
+.testimonial__quote {
+  position: relative;
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonial__quote svg {
+  margin-bottom: var(--spacing-sm);
+  opacity: 0.7;
+}
+
+.testimonial__quote p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-offwhite);
+  font-style: italic;
+  margin: 0;
+}
+
+.testimonial__rating {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.testimonial__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-earth-grey-green);
+}
+
+.testimonial__author-info {
+  flex-grow: 1;
+}
+
+.testimonial__name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--bg-earth-grey-green);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.testimonial__company {
+  font-weight: 600;
+  color: var(--bg-earth-grey-green);
+  margin: 0 0 var(--spacing-xs);
+  font-size: 0.875rem;
+}
+
+.testimonial__role {
+  color: var(--bg-earth-grey-green);
+  opacity: 0.7;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Grid layout */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .testimonial {
+    padding: var(--spacing-lg);
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .testimonial__author {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial:hover {
+    transform: none;
+  }
+}

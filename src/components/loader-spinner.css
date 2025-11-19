@@ -1,0 +1,87 @@
+.loader-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-spinner__circle {
+  border: 2px solid transparent;
+  border-top: 2px solid;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Sizes - Better organization */
+.loader-spinner--small .loader-spinner__circle {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.loader-spinner--medium .loader-spinner__circle {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.loader-spinner--large .loader-spinner__circle {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+/* Colors - CSS variables use karo */
+.loader-spinner--primary .loader-spinner__circle {
+  border-top-color: var(--accent, #646cff); /* Fallback color */
+}
+
+.loader-spinner--gold .loader-spinner__circle {
+  border-top-color: var(--card-glass, #FFD700); /* Fallback color */
+}
+
+.loader-spinner--white .loader-spinner__circle {
+  border-top-color: var(--text-offwhite, #FFFFFF); /* Fallback color */
+}
+
+/* Animation */
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Reduced motion support - Yeh important hai */
+@media (prefers-reduced-motion: reduce) {
+  .loader-spinner__circle {
+    animation: none;
+  }
+  
+  .loader-spinner__circle::after {
+    content: "•••";
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: inherit;
+  }
+  
+  /* Size adjustments for reduced motion */
+  .loader-spinner--small .loader-spinner__circle::after {
+    font-size: 8px;
+  }
+  
+  .loader-spinner--medium .loader-spinner__circle::after {
+    font-size: 12px;
+  }
+  
+  .loader-spinner--large .loader-spinner__circle::after {
+    font-size: 16px;
+  }
+}
+
+/* Accessibility - Focus styles */
+.loader-spinner:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

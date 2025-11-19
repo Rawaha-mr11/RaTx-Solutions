@@ -1,0 +1,29 @@
+.process-step {
+  background: var(--image-glass);
+}
+.process-steps {
+  padding: var(--spacing-xl) 0;
+  overflow: hidden;
+}
+.services-process {
+  background: var(--grey-green-glass);
+}
+.page-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent layout shifts */
+#content {
+  overflow-x: hidden;
+}
+
+/* Better animation performance */
+.page-wrapper > * {
+  transform: translateZ(0);
+}

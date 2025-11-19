@@ -1,0 +1,347 @@
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-xxl);
+  align-items: start;
+}
+
+.contact-info h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.contact-info__intro {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+}
+
+.contact-info__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.contact-info-item {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--image-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-box);
+  transition: all 0.7s ease;
+  overflow: hidden;
+}
+
+.contact-info-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-info-item__icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.contact-info-item__content {
+  flex: 1;
+}
+
+.contact-info-item__title {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-offwhite);
+}
+
+.contact-info-item__main {
+  font-weight: 600;
+  color: var(--text-offwhite);
+  margin-bottom: var(--spacing-xs);
+}
+
+.contact-info-item__description {
+  color: var(--text-offwhite);
+  opacity: 0.7;
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.contact-info-item__link {
+  color: var(--text-offwhite);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-info-item__link:hover {
+  color: var(--accent);
+}
+
+.contact-social h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.contact-social__links {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.contact-social__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: none;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contact-social__link:hover {
+  background: var(--accent);
+  color: var(--bg-earth-grey-green);
+  transform: translateY(-2px);
+}
+
+.contact-form-section {
+  background: var(--image-glass);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.contact-form-section h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.contact-form__intro {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.faq-item {
+  background: var(--grey-green-glass);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item__question {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-offwhite);
+}
+
+.faq-item__answer {
+  color: var(--text-offwhite);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Dropdown Styles */
+.footer-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-earth-grey-green);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  box-shadow: var(--shadow-md);
+  padding: 6px 0;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.footer-dropdown__item {
+  display: block;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: var(--text-offwhite);
+  text-decoration: none;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.footer-dropdown__item:hover {
+  background: var(--accent);
+  color: var(--bg-earth-grey-green);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 968px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .contact-form-section {
+    padding: var(--spacing-lg);
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-info-item {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .contact-info-item__icon {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .contact-info__intro,
+  .contact-form__intro {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .contact-social__links {
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .contact-social__link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .faq-item {
+    padding: var(--spacing-lg);
+  }
+
+  .faq-grid {
+    gap: var(--spacing-md);
+  }
+
+  /* Dropdown menu positioning for mobile */
+  .footer-dropdown__menu {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-layout {
+    gap: var(--spacing-lg);
+  }
+
+  .contact-info__items {
+    gap: var(--spacing-md);
+  }
+
+  .contact-info-item {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .contact-form-section {
+    padding: var(--spacing-md);
+  }
+
+  .contact-social__link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-social__link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .faq-item {
+    padding: var(--spacing-md);
+  }
+
+  .footer-dropdown__menu {
+    min-width: 160px;
+  }
+
+  .footer-dropdown__item {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .contact-info-item {
+    padding: var(--spacing-sm);
+  }
+
+  .contact-form-section {
+    padding: var(--spacing-sm);
+  }
+
+  .contact-social__links {
+    gap: var(--spacing-xs);
+  }
+
+  .contact-social__link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-social__link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .contact-info-item:hover {
+    transform: none;
+  }
+
+  .contact-social__link:hover {
+    transform: none;
+  }
+  
+  .contact-info-item,
+  .contact-social__link {
+    transition: none;
+  }
+}
+
+/* Prevent horizontal overflow */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.section {
+  overflow-x: hidden;
+}
