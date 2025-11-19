@@ -253,7 +253,7 @@ const ServiceWebDev = () => {
           <div className="technologies-grid">
             {technologies.map((tech, index) => (
               <div key={index} className="tech-card">
-                <span className="tech-card__icons">{tech.techIcons}</span> 
+                <span className="tech-card__icons">{<tech.techIcons />}</span> 
                 <span className="tech-card__name">{tech.name}</span>
                 <span className="tech-card__category">{tech.category}</span>
               </div>
