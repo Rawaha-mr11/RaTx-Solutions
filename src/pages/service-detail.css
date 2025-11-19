@@ -93,45 +93,48 @@
 .service-type__icon {
   font-size: 1.2rem;
 }
+
+
 .technologies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--spacing-md);
-  padding: var(--spacing-xl) 0;
-  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
 }
 
 .tech-card {
-  height: 250px;
-  background: var(--card-color);
-  padding: var(--spacing-lg);
-  border-radius: 8rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  background: var(--bg-dark);
+  padding: 1rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 
 .tech-card:hover {
-  border-color: var(--shadow-md);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+}
+
+.tech-card__icon {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-card__icon svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--accent-color); 
 }
 
 .tech-card__name {
-  display: block;
-  font-weight: 700;
-  color: var(--text-offwhite);
-  margin-bottom: var(--spacing-xs);
-  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-light);
 }
 
 .tech-card__category {
-  font-size: 0.875rem;
-  color: var(--text-offwhite);
-  opacity: 0.7;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .packages-grid {
