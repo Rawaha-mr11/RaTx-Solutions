@@ -98,12 +98,12 @@ const ServiceWebDev = () => {
   // ]
 
   const technologies = [
-    { name: "HTML", category: "Frontend" },
-    { name: "CSS", category: "Frontend" },
-    { name: "Tailwind", category: "Frontend" },
-    { name: "Javascript", category: "Frontend" },
-    { name: "React", category: "Frontend" },
-    { name: "Material UI", category: "Frontend" },
+    { techIcons: HtmlIcon, name: "HTML", category: "Frontend" },
+    { techIcons: CssIcon, name: "CSS", category: "Frontend" },
+    { techIcons: TailwindIcon, name: "Tailwind", category: "Frontend" },
+    { techIcons: JavascriptIcon, name: "Javascript", category: "Frontend" },
+    { techIcons: ReactIcon, name: "React", category: "Frontend" },
+    { techIcons: MaterialIcon, name: "Material UI", category: "Frontend" },
     // { name: "Next.js", category: "Frontend" },
     // { name: "Vue.js", category: "Frontend" },
     // { name: "Node.js", category: "Backend" },
@@ -253,7 +253,7 @@ const ServiceWebDev = () => {
           <div className="technologies-grid">
             {technologies.map((tech, index) => (
               <div key={index} className="tech-card">
-                {/* <span className="tech-card__icons">{tech.techIcons}</span> */}
+                <span className="tech-card__icons">{tech.techIcons}</span> 
                 <span className="tech-card__name">{tech.name}</span>
                 <span className="tech-card__category">{tech.category}</span>
               </div>
@@ -335,5 +335,51 @@ const CheckIcon = () => (
     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
   </svg>
 );
+
+
+const HtmlIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
+    <path d="M19.5 3.5l8.7 98.4 35.8 9.9 36-10 8.5-98.3H19.5zm69.2 26.9l-.6 7-21.2 9.1h20.2l-2.3 27-21.7 6.3-21.6-6.2-1.5-17.4h10.4l.8 8.9 11.9 3.3 12-3.3.8-11.8H43.6l-.5-6 21.2-9.2H43.4l-.7-7.1h46z"/>
+  </svg>
+);
+
+const CssIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
+    <path d="M19 3.5l8.5 98.4 36.2 10 36.3-10 8.5-98.4H19zm72.3 28.2H43.8l.7 7.7h46.1l-2 22.3-21.8 6-21.9-6-1.4-15.7h10.4l.8 8.4 12.3 3.5 12.1-3.5 1.3-14H41.7l-2.1-24h51.7l-.3 5.3z"/>
+  </svg>
+);
+
+const TailwindIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 256 154" fill="currentColor">
+    <path d="M128 0c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16C161 6 146 0 128 0zm-66 74c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16-13-14-28-20-46-20z"/>
+  </svg>
+);
+
+const JavascriptIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
+    <path d="M1.4 1.4h125.2v125.2H1.4z" />
+    <path d="M116.3 116.3H11.7V11.7h104.6z" fill="currentColor"/>
+    <path d="M86.7 97.1c2.2 3.6 5 6.2 10 6.2 4.2 0 6.9-2.1 6.9-5 0-3.5-2.8-4.7-7.5-6.7l-2.6-1.1c-7.5-3.2-12.5-7.3-12.5-16 0-8 6.1-14.2 15.6-14.2 6.8 0 11.7 2.4 15.2 8.7l-8.3 5.3c-1.8-3.2-3.8-4.4-6.9-4.4-3.1 0-5.1 2-5.1 4.4 0 3.1 2 4.3 6.7 6.2l2.6 1.1c8.9 3.8 13.9 7.7 13.9 16.4 0 9.4-7.3 14.6-17.1 14.6-9.6 0-15.8-4.6-19-10.6l8.0-4.7zM49.3 97.7c1.6 2.9 3.1 5.3 6.6 5.3 3.4 0 5.6-1.3 5.6-6.6V57.1h10.5v39.6c0 10.8-6.3 15.7-15.4 15.7-8.3 0-13.1-4.3-15.5-9.5l8.2-5.2z"/>
+  </svg>
+);
+
+const ReactIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 841.9 595.3" fill="currentColor">
+    <circle cx="420.9" cy="296.5" r="45.7" />
+    <g fill="none" stroke="currentColor" strokeWidth="30">
+      <ellipse rx="165" ry="381" transform="rotate(60 420.9 296.5)" />
+      <ellipse rx="165" ry="381" transform="rotate(120 420.9 296.5)" />
+      <ellipse rx="165" ry="381" transform="rotate(180 420.9 296.5)" />
+    </g>
+  </svg>
+);
+
+const MaterialIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 600 476" fill="currentColor">
+    <path d="M0 259V0l225 129v86L75 129v172l150 86v86zM600 0v259L375 388v-86l150-86V129L375 215v-86z"/>
+  </svg>
+);
+
+
 
 export default ServiceWebDev;
