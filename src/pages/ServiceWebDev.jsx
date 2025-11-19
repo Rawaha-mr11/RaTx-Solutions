@@ -251,14 +251,17 @@ const ServiceWebDev = () => {
             </p>
           </div>
           <div className="technologies-grid">
-            {technologies.map((tech, index) => (
-              <div key={index} className="tech-card">
-                <span className="tech-card__icons">{<tech.techIcons />}</span> 
-                <span className="tech-card__name">{tech.name}</span>
-                <span className="tech-card__category">{tech.category}</span>
-              </div>
-            ))}
+              {technologies.map((tech, index) => (
+                  <div key={index} className="tech-card">
+                        <div className="tech-card__icon">
+                            <tech.techIcons />
+                        </div>
+                        <div className="tech-card__name">{tech.name}</div>
+                        <div className="tech-card__category">{tech.category}</div>
+                  </div>
+             ))}
           </div>
+
         </div>
       </section>
 
