@@ -95,6 +95,11 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link to="/Contact" className="footer__link">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
