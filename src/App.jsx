@@ -32,8 +32,9 @@ function App() {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+
     if (smootherRef.current) {
-      smootherRef.current.scrollTop(0);
+      smootherRef.current.scrollTo(0, true);
     }
   }, [location.pathname]);
 
