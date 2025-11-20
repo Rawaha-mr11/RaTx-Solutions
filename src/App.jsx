@@ -26,37 +26,17 @@ gsap.registerPlugin(ScrollSmoother);
 function App() {
   const location = useLocation();
   const smootherRef = useRef(null);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Scroll restoration fix for all route changes
   useEffect(() => {
-    // Reset scroll on route change
+    window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-    
     if (smootherRef.current) {
       smootherRef.current.scrollTop(0);
     }
-
-    // Handle browser back/forward navigation
-    const handlePopState = () => {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        if (smootherRef.current) {
-          smootherRef.current.scrollTop(0);
-        }
-      }, 100);
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
   }, [location.pathname]);
 
-  // Initialize ScrollSmoother
   useEffect(() => {
     if (!smootherRef.current) {
       smootherRef.current = ScrollSmoother.create({
@@ -64,23 +44,9 @@ function App() {
         content: "#content",
         smooth: 1.2,
         effects: true,
-        normalizeScroll: true,
-        ignoreMobileResize: true,
       });
     }
 
-    // Handle initial load
-    if (isInitialLoad) {
-      setIsInitialLoad(false);
-    }
-
-    return () => {
-      // Don't kill smoother on route changes, only on component unmount
-    };
-  }, []);
-
-  // Kill smoother only when component unmounts
-  useEffect(() => {
     return () => {
       if (smootherRef.current) {
         smootherRef.current.kill();
@@ -99,7 +65,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <PageWrapper key={location.key}>
+                  <PageWrapper>
                     <Home />
                   </PageWrapper>
                 }
@@ -163,7 +129,7 @@ function App() {
               <Route
                 path="/blog/:slug"
                 element={
-                  <PageWrapper key={location.pathname}>
+                  <PageWrapper>
                     <BlogPost />
                   </PageWrapper>
                 }
