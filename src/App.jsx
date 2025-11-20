@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageWrapper from "./components/PageWrapper";
@@ -21,75 +19,52 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
-gsap.registerPlugin(ScrollSmoother);
-
 function App() {
   const location = useLocation();
-  const smootherRef = useRef(null);
 
-  // Initialize ScrollSmoother once
-  useEffect(() => {
-    if (!smootherRef.current) {
-      smootherRef.current = ScrollSmoother.create({
-        wrapper: "#wrapper",
-        content: "#content",
-        smooth: 1.2,
-        effects: true,
-      });
-
-      // Scroll to top on initial load
-      smootherRef.current.scrollTo(0, true);
-    }
-
-    return () => {
-      if (smootherRef.current) {
-        smootherRef.current.kill();
-        smootherRef.current = null;
-      }
-    };
-  }, []);
-
-  // Scroll to top on route change
-  useEffect(() => {
-    if (smootherRef.current) {
-      smootherRef.current.scrollTo(0, true);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname]);
-
-  // Disable browser scroll restoration (prevents auto-scroll on reload)
+  // Disable browser scroll restoration
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
+  // Scroll top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname]);
+
+  // Scroll top on hard reload after full page load
+  useEffect(() => {
+    const handleLoad = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
+
+    window.addEventListener("load", handleLoad);
+    return () => window.removeEventListener("load", handleLoad);
+  }, []);
+
   return (
     <HelmetProvider>
-      <div id="wrapper">
-        <Header />
-        <div id="content">
-          <main>
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-              <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
-              <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-              <Route path="/services/web-development" element={<PageWrapper><ServiceWebDev /></PageWrapper>} />
-              <Route path="/services/data-entry" element={<PageWrapper><ServiceDataEntry /></PageWrapper>} />
-              <Route path="/services/creative-writing" element={<PageWrapper><ServiceCreativeWriting /></PageWrapper>} />
-              <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
-              <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
-              <Route path="/blog/:slug" element={<PageWrapper><BlogPost /></PageWrapper>} />
-              <Route path="/careers" element={<PageWrapper><Careers /></PageWrapper>} />
-              <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-              <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-        <ScrollToTop />
-      </div>
+      <Header />
+      <main>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+          <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+          <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+          <Route path="/services/web-development" element={<PageWrapper><ServiceWebDev /></PageWrapper>} />
+          <Route path="/services/data-entry" element={<PageWrapper><ServiceDataEntry /></PageWrapper>} />
+          <Route path="/services/creative-writing" element={<PageWrapper><ServiceCreativeWriting /></PageWrapper>} />
+          <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
+          <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
+          <Route path="/blog/:slug" element={<PageWrapper><BlogPost /></PageWrapper>} />
+          <Route path="/careers" element={<PageWrapper><Careers /></PageWrapper>} />
+          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
+        </Routes>
+      </main>
+      <Footer />
+      <ScrollToTop />
     </HelmetProvider>
   );
 }

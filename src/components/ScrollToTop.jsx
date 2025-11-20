@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import "./scrollToTop.css";
-
-gsap.registerPlugin(ScrollToPlugin);
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 50) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", toggleVisibility);
+    toggleVisibility(); // Initial check
+
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    gsap.to(window, {
-      scrollTo: { y: 0 },
-      duration: 1,
-      ease: "ease",
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
