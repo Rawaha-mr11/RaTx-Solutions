@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { gsap } from "gsap";
@@ -27,17 +27,7 @@ function App() {
   const location = useLocation();
   const smootherRef = useRef(null);
 
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    if (smootherRef.current) {
-      smootherRef.current.scrollTo(0, true);
-    }
-  }, [location.pathname]);
-
+  // Initialize ScrollSmoother once
   useEffect(() => {
     if (!smootherRef.current) {
       smootherRef.current = ScrollSmoother.create({
@@ -46,6 +36,9 @@ function App() {
         smooth: 1.2,
         effects: true,
       });
+
+      // Scroll to top on initial load
+      smootherRef.current.scrollTo(0, true);
     }
 
     return () => {
@@ -56,6 +49,22 @@ function App() {
     };
   }, []);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    if (smootherRef.current) {
+      smootherRef.current.scrollTo(0, true);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
+  // Disable browser scroll restoration (prevents auto-scroll on reload)
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
   return (
     <HelmetProvider>
       <div id="wrapper">
@@ -63,102 +72,18 @@ function App() {
         <div id="content">
           <main>
             <Routes location={location} key={location.pathname}>
-              <Route
-                path="/"
-                element={
-                  <PageWrapper>
-                    <Home />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/about"
-                element={
-                  <PageWrapper>
-                    <About />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/services"
-                element={
-                  <PageWrapper>
-                    <Services />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/services/web-development"
-                element={
-                  <PageWrapper>
-                    <ServiceWebDev />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/services/data-entry"
-                element={
-                  <PageWrapper>
-                    <ServiceDataEntry />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/services/creative-writing"
-                element={
-                  <PageWrapper>
-                    <ServiceCreativeWriting />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/portfolio"
-                element={
-                  <PageWrapper>
-                    <Portfolio />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/blog"
-                element={
-                  <PageWrapper>
-                    <Blog />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/blog/:slug"
-                element={
-                  <PageWrapper>
-                    <BlogPost />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/careers"
-                element={
-                  <PageWrapper>
-                    <Careers />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/contact"
-                element={
-                  <PageWrapper>
-                    <Contact />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  <PageWrapper>
-                    <NotFound />
-                  </PageWrapper>
-                }
-              />
+              <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+              <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+              <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+              <Route path="/services/web-development" element={<PageWrapper><ServiceWebDev /></PageWrapper>} />
+              <Route path="/services/data-entry" element={<PageWrapper><ServiceDataEntry /></PageWrapper>} />
+              <Route path="/services/creative-writing" element={<PageWrapper><ServiceCreativeWriting /></PageWrapper>} />
+              <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
+              <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
+              <Route path="/blog/:slug" element={<PageWrapper><BlogPost /></PageWrapper>} />
+              <Route path="/careers" element={<PageWrapper><Careers /></PageWrapper>} />
+              <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+              <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
             </Routes>
           </main>
           <Footer />
