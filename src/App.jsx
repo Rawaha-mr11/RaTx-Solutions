@@ -94,7 +94,6 @@ function App() {
       <div id="wrapper">
         <Header />
         <div id="content">
-          <ScrollToTop />
           <main>
             <Routes location={location} key={location.pathname}>
               <Route
@@ -197,6 +196,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <ScrollToTop />
       </div>
     </HelmetProvider>
   );
