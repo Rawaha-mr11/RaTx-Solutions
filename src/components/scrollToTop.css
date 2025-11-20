@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   color: var(--bg-earth-grey-green);
-  z-index: 999;
+  z-index: 9999;
   transition: all 0.3s ease;
   box-shadow: 0px 0px 15px #f0f02586;
   animation: fadeIn 0.3s ease-in;
