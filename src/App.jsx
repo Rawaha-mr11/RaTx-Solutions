@@ -27,17 +27,18 @@ function App() {
   const location = useLocation();
   const smootherRef = useRef(null);
 
+  // Keep browser from restoring scroll on navigation/reload
   useEffect(() => {
-    window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    if (smootherRef.current) {
-      smootherRef.current.scrollTo(0, true);
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      try {
+        window.history.scrollRestoration = "manual";
+      } catch (e) {
+        // ignore
+      }
     }
-  }, [location.pathname]);
+  }, []);
 
+  // Ensure ScrollSmoother is created and force it (and native scroll) to top.
   useEffect(() => {
     if (!smootherRef.current) {
       smootherRef.current = ScrollSmoother.create({
@@ -45,7 +46,31 @@ function App() {
         content: "#content",
         smooth: 1.2,
         effects: true,
+        normalizeScroll: true,
+        ignoreMobileResize: true,
       });
+
+      const forceTop = () => {
+        try {
+          // virtual scroller
+          smootherRef.current && smootherRef.current.scrollTop(0);
+        } catch (e) {
+          // ignore
+        }
+        // native fallback
+        try {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        } catch (e) {
+          // ignore
+        }
+      };
+
+      // Run immediately and retry shortly after to handle timing edge-cases
+      forceTop();
+      setTimeout(forceTop, 50);
+      setTimeout(forceTop, 200);
     }
 
     return () => {
@@ -55,6 +80,26 @@ function App() {
       }
     };
   }, []);
+
+  // On route change, prefer ScrollSmoother to reset scroll, otherwise fallback to native
+  useEffect(() => {
+    if (smootherRef.current) {
+      try {
+        smootherRef.current.scrollTop(0, true);
+        return;
+      } catch (e) {
+        // fallthrough
+      }
+    }
+
+    try {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    } catch (e) {
+      // ignore
+    }
+  }, [location.pathname]);
 
   return (
     <HelmetProvider>
