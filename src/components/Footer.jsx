@@ -5,11 +5,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CTAButton from "./CTAButton";
 import "./footer.css";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef();
+  // const [subscribeEmail, setSubscribeEmail] = useState('');
+  // const [subscribeMsg, setSubscribeMsg] = useState('');
+  // const [subscribeLoading, setSubscribeLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setSubscribeMsg("");
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -28,7 +35,7 @@ const Footer = () => {
             trigger: footerRef.current,
             start: "top 90%",
             toggleActions: "play none none none",
-            once: true
+            once: true,
           },
         }
       );
@@ -138,7 +145,12 @@ const Footer = () => {
                 className="footer__input"
                 required
               />
-              <CTAButton type="submit" variant="primary" size="small" className="cta-footer-subscribe">
+              <CTAButton
+                type="submit"
+                variant="primary"
+                size="small"
+                className="cta-footer-subscribe"
+              >
                 Subscribe
               </CTAButton>
             </form>

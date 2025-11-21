@@ -1,38 +1,38 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import CTAButton from './CTAButton';
-import LoaderSpinner from './LoaderSpinner';
-import './contact-form.css';
+import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import CTAButton from "./CTAButton";
+import LoaderSpinner from "./LoaderSpinner";
+import "./contact-form.css";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    budget: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    budget: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState({});
-  
+
   const formRef = useRef();
   const successRef = useRef();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.contact-form__field', {
+      gsap.from(".contact-form__field", {
         scrollTrigger: {
           trigger: formRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
+          start: "top 80%",
+          toggleActions: "play none none reverse",
         },
         y: 40,
         opacity: 0,
         stagger: 0.1,
         duration: 0.6,
-        ease: 'power2.out'
+        ease: "power2.out",
       });
     }, formRef);
 
@@ -42,9 +42,10 @@ const ContactForm = () => {
   useEffect(() => {
     if (isSuccess) {
       const ctx = gsap.context(() => {
-        gsap.fromTo(successRef.current,
+        gsap.fromTo(
+          successRef.current,
           { scale: 0.8, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }
+          { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }
         );
       }, successRef);
 
@@ -54,16 +55,16 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
@@ -72,19 +73,19 @@ const ContactForm = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
+      newErrors.message = "Message must be at least 10 characters";
     }
 
     setErrors(newErrors);
@@ -93,31 +94,57 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
-
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // In real app, you would do:
-      // await submitContactForm(formData);
-      
-      setIsSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        budget: '',
-        message: ''
+      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:4000";
+      const res = await fetch(`${apiBase}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.company || formData.service || "Contact form",
+          message: formData.message,
+        }),
       });
-    } catch (error) {
-      setErrors({ submit: 'Failed to send message. Please try again.' });
+
+      const json = await res.json();
+      if (!res.ok) {
+        // If backend sends validation array: map it
+        if (json?.errors && Array.isArray(json.errors)) {
+          const serverErrors = {};
+          json.errors.forEach((err) => {
+            if (err.param) serverErrors[err.param] = err.msg;
+          });
+          setErrors((prev) => ({
+            ...prev,
+            ...serverErrors,
+            submit: json.message || "Validation failed",
+          }));
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            submit: json.message || "Send failed",
+          }));
+        }
+      } else {
+        setIsSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          budget: "",
+          message: "",
+        });
+      }
+    } catch (err) {
+      setErrors((prev) => ({
+        ...prev,
+        submit: "Network error. Please try again.",
+      }));
     } finally {
       setIsSubmitting(false);
     }
@@ -130,11 +157,11 @@ const ContactForm = () => {
           <SuccessIcon />
         </div>
         <h3>Thank You!</h3>
-        <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
-        <CTAButton 
-          onClick={() => setIsSuccess(false)}
-          variant="primary"
-        >
+        <p>
+          Your message has been sent successfully. We'll get back to you within
+          24 hours.
+        </p>
+        <CTAButton onClick={() => setIsSuccess(false)} variant="primary">
           Send Another Message
         </CTAButton>
       </div>
@@ -142,7 +169,12 @@ const ContactForm = () => {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="contact-form" noValidate>
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="contact-form"
+      noValidate
+    >
       {errors.submit && (
         <div className="contact-form__error contact-form__error--submit">
           {errors.submit}
@@ -160,7 +192,9 @@ const ContactForm = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={`contact-form__input ${errors.name ? 'contact-form__input--error' : ''}`}
+            className={`contact-form__input ${
+              errors.name ? "contact-form__input--error" : ""
+            }`}
             placeholder="Enter your full name"
             required
           />
@@ -179,7 +213,9 @@ const ContactForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`contact-form__input ${errors.email ? 'contact-form__input--error' : ''}`}
+            className={`contact-form__input ${
+              errors.email ? "contact-form__input--error" : ""
+            }`}
             placeholder="Enter your email address"
             required
           />
@@ -253,7 +289,9 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             rows={6}
-            className={`contact-form__textarea ${errors.message ? 'contact-form__textarea--error' : ''}`}
+            className={`contact-form__textarea ${
+              errors.message ? "contact-form__textarea--error" : ""
+            }`}
             placeholder="Tell us about your project, timeline, and any specific requirements..."
             required
           />
@@ -277,7 +315,7 @@ const ContactForm = () => {
               Sending...
             </>
           ) : (
-            'Send Message'
+            "Send Message"
           )}
         </CTAButton>
       </div>

@@ -99,14 +99,20 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1.5rem;
+  padding: var(--spacing-md);
   text-align: center;
+  overflow: hidden;
 }
 
 .tech-card {
-  background: var(--bg-dark);
-  padding: 1rem;
-  border-radius: 12px;
+  width: 150px;
+  background: var(--image-glass);
+  padding: var(--spacing-lg);
+  border-radius: calc(var(--radius-lg) + 4rem);
   transition: transform 0.3s ease;
+  display: grid;
+  gap: 1rem;
+  place-content: center;
 }
 
 .tech-card:hover {
@@ -121,13 +127,14 @@
 }
 
 .tech-card__icon svg {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   fill: var(--accent-color); 
 }
 
 .tech-card__name {
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   margin-bottom: 0.25rem;
   color: var(--text-light);
 }

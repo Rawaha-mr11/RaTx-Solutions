@@ -5,6 +5,9 @@ import SEO from "../components/SEO";
 import Hero from "../components/Hero";
 import CTAButton from "../components/CTAButton";
 import "./service-detail.css";
+import HTML5 from '../assets/html5.png'
+import CSS3 from '../assets/css3.png'
+import MaterialUi from '../assets/ui.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -251,17 +254,16 @@ const ServiceWebDev = () => {
             </p>
           </div>
           <div className="technologies-grid">
-              {technologies.map((tech, index) => (
-                  <div key={index} className="tech-card">
-                        <div className="tech-card__icon">
-                            <tech.techIcons />
-                        </div>
-                        <div className="tech-card__name">{tech.name}</div>
-                        <div className="tech-card__category">{tech.category}</div>
-                  </div>
-             ))}
+            {technologies.map((tech, index) => (
+              <div key={index} className="tech-card">
+                <div className="tech-card__icon">
+                  <tech.techIcons />
+                </div>
+                <div className="tech-card__name">{tech.name}</div>
+                <div className="tech-card__category">{tech.category}</div>
+              </div>
+            ))}
           </div>
-
         </div>
       </section>
 
@@ -292,7 +294,11 @@ const ServiceWebDev = () => {
                 </div>
                 <ul className="package-card__features">
                   {pkg.features.map((feature, idx) => (
-                    <li key={idx} className="package-card__feature" style={{color: "white"}}>
+                    <li
+                      key={idx}
+                      className="package-card__feature"
+                      style={{ color: "white" }}
+                    >
                       <CheckIcon />
                       {feature}
                     </li>
@@ -323,7 +329,12 @@ const ServiceWebDev = () => {
               Let's discuss your project requirements and create a solution that
               drives your business forward.
             </p>
-            <CTAButton to="/contact" variant="accent" size="large" style={{color:"var(--bg-earth-grey-green)"}}>
+            <CTAButton
+              to="/contact"
+              variant="accent"
+              size="large"
+              style={{ color: "var(--bg-earth-grey-green)" }}
+            >
               Start Your Project Today
             </CTAButton>
           </div>
@@ -339,50 +350,69 @@ const CheckIcon = () => (
   </svg>
 );
 
-
 const HtmlIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
-    <path d="M19.5 3.5l8.7 98.4 35.8 9.9 36-10 8.5-98.3H19.5zm69.2 26.9l-.6 7-21.2 9.1h20.2l-2.3 27-21.7 6.3-21.6-6.2-1.5-17.4h10.4l.8 8.9 11.9 3.3 12-3.3.8-11.8H43.6l-.5-6 21.2-9.2H43.4l-.7-7.1h46z"/>
-  </svg>
+    <img 
+      src={HTML5} 
+      alt="Material UI" 
+      width={60} 
+      height={60}
+      style={{ objectFit: "contain" }}
+    />
 );
 
 const CssIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
-    <path d="M19 3.5l8.5 98.4 36.2 10 36.3-10 8.5-98.4H19zm72.3 28.2H43.8l.7 7.7h46.1l-2 22.3-21.8 6-21.9-6-1.4-15.7h10.4l.8 8.4 12.3 3.5 12.1-3.5 1.3-14H41.7l-2.1-24h51.7l-.3 5.3z"/>
-  </svg>
+    <img 
+      src={CSS3} 
+      alt="Material UI" 
+      width={60} 
+      height={60}
+      style={{ objectFit: "contain" }}
+    />
 );
+
 
 const TailwindIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 256 154" fill="currentColor">
-    <path d="M128 0c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16C161 6 146 0 128 0zm-66 74c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16-13-14-28-20-46-20z"/>
+  <svg viewBox="0 0 256 154" width="40" height="40">
+    <path
+      fill="#38BDF8"
+      d="M128 0c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16C161 6 146 0 128 0zm-66 74c-35 0-57 18-66 54 13-18 29-25 48-21 10 2 17 8 25 16 13 14 28 20 46 20 35 0 57-18 66-54-13 18-29 25-48 21-10-2-17-8-25-16-13-14-28-20-46-20z"
+    />
   </svg>
 );
+
 
 const JavascriptIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 128 128" fill="currentColor">
-    <path d="M1.4 1.4h125.2v125.2H1.4z" />
-    <path d="M116.3 116.3H11.7V11.7h104.6z" fill="currentColor"/>
-    <path d="M86.7 97.1c2.2 3.6 5 6.2 10 6.2 4.2 0 6.9-2.1 6.9-5 0-3.5-2.8-4.7-7.5-6.7l-2.6-1.1c-7.5-3.2-12.5-7.3-12.5-16 0-8 6.1-14.2 15.6-14.2 6.8 0 11.7 2.4 15.2 8.7l-8.3 5.3c-1.8-3.2-3.8-4.4-6.9-4.4-3.1 0-5.1 2-5.1 4.4 0 3.1 2 4.3 6.7 6.2l2.6 1.1c8.9 3.8 13.9 7.7 13.9 16.4 0 9.4-7.3 14.6-17.1 14.6-9.6 0-15.8-4.6-19-10.6l8.0-4.7zM49.3 97.7c1.6 2.9 3.1 5.3 6.6 5.3 3.4 0 5.6-1.3 5.6-6.6V57.1h10.5v39.6c0 10.8-6.3 15.7-15.4 15.7-8.3 0-13.1-4.3-15.5-9.5l8.2-5.2z"/>
+  <svg viewBox="0 0 128 128" width="40" height="40">
+    <path fill="#F7DF1E" d="M1 1h126v126H1z" />
+    <path d="M86 97c2 3 4 6 9 6 4 0 7-2 7-5 0-3-2-5-7-7l-3-1c-7-3-12-7-12-16s6-15 16-15c7 0 12 2 15 8l-8 5c-2-3-4-4-7-4-3 0-5 2-5 5s2 5 7 7l3 1c9 4 14 7 14 16 0 10-7 15-18 15-10 0-16-4-19-10l8-5zM49 98c2 3 3 5 7 5s6-2 6-7V57h10v39c0 11-6 16-16 16-8 0-13-4-15-9l8-5z" />
   </svg>
 );
+
 
 const ReactIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 841.9 595.3" fill="currentColor">
-    <circle cx="420.9" cy="296.5" r="45.7" />
-    <g fill="none" stroke="currentColor" strokeWidth="30">
-      <ellipse rx="165" ry="381" transform="rotate(60 420.9 296.5)" />
-      <ellipse rx="165" ry="381" transform="rotate(120 420.9 296.5)" />
-      <ellipse rx="165" ry="381" transform="rotate(180 420.9 296.5)" />
-    </g>
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348">
+  <title>React Logo</title>
+  <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
+  <g stroke="#61DAFB" stroke-width="1" fill="none">
+    <ellipse rx="11" ry="4.2" transform="rotate(30)"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(90)"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(150)"/>
+  </g>
+</svg>
 );
 
-const MaterialIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 600 476" fill="currentColor">
-    <path d="M0 259V0l225 129v86L75 129v172l150 86v86zM600 0v259L375 388v-86l150-86V129L375 215v-86z"/>
-  </svg>
-);
 
+const MaterialIcon = () => {
+  return (
+    <img 
+      src={MaterialUi} 
+      alt="Material UI" 
+      width={60} 
+      height={60}
+      style={{ objectFit: "contain" }}
+    />
+  );
+};
 
 
 export default ServiceWebDev;

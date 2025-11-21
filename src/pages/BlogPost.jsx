@@ -19,7 +19,10 @@ const BlogPost = () => {
   // If blog post not found, show error
   if (!blogPost) {
     return (
-      <div className="container" style={{ padding: "100px 20px", textAlign: "center" }}>
+      <div
+        className="container"
+        style={{ padding: "100px 20px", textAlign: "center" }}
+      >
         <h1>Article Not Found</h1>
         <p>The article you're looking for doesn't exist.</p>
         <Link to="/blog" className="blog-post__breadcrumb-link">
@@ -38,7 +41,7 @@ const BlogPost = () => {
         scrollTrigger: {
           trigger: contentRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
         y: 40,
         opacity: 0,
@@ -142,7 +145,7 @@ const BlogPost = () => {
                 <h3>About {blogPost.author.name}</h3>
                 <p>
                   {blogPost.author.name} is {blogPost.author.role.toLowerCase()}{" "}
-                  at RATX SOLUTIONS with extensive experience in their field.
+                  at RATX SOLUTIONS {blogPost.author.description}
                 </p>
               </div>
             </div>
@@ -171,7 +174,9 @@ const BlogPost = () => {
                       <h3 className="blog-post__related-card-title">
                         <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                       </h3>
-                      <p className="blog-post__related-excerpt">{post.excerpt}</p>
+                      <p className="blog-post__related-excerpt">
+                        {post.excerpt}
+                      </p>
                       <Link
                         to={`/blog/${post.slug}`}
                         className="blog-post__related-link"
@@ -192,7 +197,8 @@ const BlogPost = () => {
             <div className="blog-post__cta">
               <h2>Ready to Build Your Next Project?</h2>
               <p>
-                Let's discuss how we can help bring your ideas to life with modern technologies and best practices.
+                Let's discuss how we can help bring your ideas to life with
+                modern technologies and best practices.
               </p>
               <CTAButton to="/contact" variant="primary" size="large">
                 Start Your Project
